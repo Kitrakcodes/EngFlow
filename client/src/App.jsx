@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Mic, MicOff, Send, Award, Phone, MessageSquare, Book, X, RotateCcw, Zap, ChevronDown, ChevronUp, RefreshCw, Search, Sun, Moon, ArrowLeft, Headphones, Mail, Heart, ShieldCheck } from 'lucide-react';
 
-const API = "http://localhost:5000/api";
+const API = "https://cognivo-backend-5czj.onrender.com/api";
 const CATEGORIES = ["Competitive Mastery", "Current Affairs", "Roleplay Scenarios", "Abstract Logic", "Situational", "Global Custom"];
 const CONV_TYPES = ["Discussion", "Debate", "Interview", "Casual"];
 
