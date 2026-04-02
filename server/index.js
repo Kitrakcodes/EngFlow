@@ -13,7 +13,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 app.post('/api/suggest-topics', async (req, res) => {
     const { category, customContext } = req.body;
     try {
-        const prompt = customContext 
+        const prompt = customContext
             ? `Suggest 5 specific discussion topics for "${category}" based on context: "${customContext}".`
             : `Suggest 5 professional topics for "${category}".`;
         const completion = await groq.chat.completions.create({
@@ -29,9 +29,9 @@ app.post('/api/dict', async (req, res) => {
     const { word } = req.body;
     try {
         const completion = await groq.chat.completions.create({
-            messages: [{ 
-                role: "user", 
-                content: `Explain the word "${word}". Return JSON: {"english": "Simple definition", "hinglish": "👉 ${word} matlab... (Explain concept simply)"}` 
+            messages: [{
+                role: "user",
+                content: `Explain the word "${word}". Return JSON: {"english": "Simple definition", "hinglish": "👉 ${word} matlab... (Explain concept simply)"}`
             }],
             model: "llama-3.1-8b-instant",
             response_format: { type: "json_object" }
@@ -77,4 +77,9 @@ app.post('/api/feedback', async (req, res) => {
     } catch (e) { res.status(500).json({ error: "Audit failed" }); }
 });
 
-app.listen(5000, () => console.log("🚀 Server Ready"));
+// Use the port Render gives us, otherwise use 5000 for local testing
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Cognivo Backend Live on Port ${PORT}`);
+});
